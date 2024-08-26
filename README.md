@@ -20,6 +20,11 @@ CLI Installation:
 npx shadcn-ui@latest add button popover
 ```
 
+Link to components:
+
+-   [Monthpicker](https://github.com/gr3enk/shadcn-ui-monthpicker/blob/main/src/components/ui/monthpicker.tsx)
+-   [Monthrangepicker](https://github.com/gr3enk/shadcn-ui-monthpicker/blob/main/src/components/ui/monthrangepicker.tsx)
+
 Also [Lucide React](https://lucide.dev/guide/packages/lucide-react) is requiered for the Icons.
 
 ## `Monthpicker` Component
@@ -88,6 +93,7 @@ export default function Example() {
 ```typescript
 type Month = { number: number; name: string };
 ```
+
 </details>
 <details>
   <summary>variant</summary>
@@ -100,6 +106,7 @@ type Month = { number: number; name: string };
 ```typescript
 type ButtonVariant = "default" | "outline" | "ghost" | "link" | "destructive" | "secondary" | null | undefined;
 ```
+
 </details>
 
 ## `Monthrangepicker` Component
@@ -170,6 +177,7 @@ export default function Example() {
 | `endMonth`   | Date                              | Date for the range end month                 |
 | `variant`    | ButtonVariant                     | variant for the button                       |
 | `onClick`    | (selector: QuickSelector) => void | Called when quick selection has been clicked |
+
 </details>
 
 <details>
@@ -183,6 +191,7 @@ export default function Example() {
 ```typescript
 type Month = { number: number; name: string; yearOffset: number }; // yearOffset = 0 on the left calendar and 1 on the right side calendar
 ```
+
 </details>
 
 <details>
