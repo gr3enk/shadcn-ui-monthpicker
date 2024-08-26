@@ -227,6 +227,8 @@ function MonthRangeCal({
                                                                 setEndLocked(false);
                                                                 setStartMonth(m.number);
                                                                 setStartYear(menuYear + m.yearOffset);
+                                                                setEndYear(menuYear + m.yearOffset);
+                                                                setEndMonth(m.number);
                                                                 if (onStartMonthSelect) onStartMonthSelect(new Date(menuYear + m.yearOffset, m.number));
                                                             } else {
                                                                 setRangePending(false);
@@ -241,6 +243,8 @@ function MonthRangeCal({
                                                             setEndLocked(false);
                                                             setStartMonth(m.number);
                                                             setStartYear(menuYear + m.yearOffset);
+                                                            setEndYear(menuYear + m.yearOffset);
+                                                            setEndMonth(m.number);
                                                             if (onStartMonthSelect) onStartMonthSelect(new Date(menuYear + m.yearOffset, m.number));
                                                         }
                                                     }}
