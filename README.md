@@ -38,7 +38,7 @@ import { MonthPicker } from "@/components/ui/monthpicker";
 export default function Example() {
     const [date, setDate] = React.useState<Date>();
 
-    return <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedDate={date}></MonthPicker>;
+    return <MonthPicker onMonthSelect={setDate} selectedDate={date} />;
 }
 ```
 
@@ -57,7 +57,7 @@ export default function Example() {
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-                <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedMonth={date}></MonthPicker>
+                <MonthPicker onMonthSelect={setDate} selectedMonth={date} />
             </PopoverContent>
         </Popover>
     );
@@ -118,7 +118,7 @@ import { MonthRangePicker } from "@/components/ui/monthrangepicker";
 export default function Example() {
     const [dates, setDates] = React.useState<{ start: Date; end: Date }>();
 
-    return <MonthRangePicker onMonthRangeSelect={(newDates) => setDates(newDates)} selectedMonthRange={dates}></MonthRangePicker>;
+    return <MonthRangePicker onMonthRangeSelect={setDates} selectedMonthRange={dates} />;
 }
 ```
 
@@ -126,7 +126,7 @@ Use with shadcn-ui `Popover` component:
 
 ```typescript
 export default function Example() {
-    const [date, setDate] = React.useState<Date>();
+    const [dates, setDates] = React.useState<{ start: Date; end: Date }>();
 
     return (
         <Popover>
@@ -137,7 +137,7 @@ export default function Example() {
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-                <MonthRangePicker onMonthRangeSelect={(newDates) => setDates(newDates)} selectedMonthRange={dates}></MonthRangePicker>
+                <MonthRangePicker onMonthRangeSelect={setDates} selectedMonthRange={dates} />
             </PopoverContent>
         </Popover>
     );
