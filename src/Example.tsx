@@ -6,6 +6,7 @@ import { MonthPicker } from "@/components/ui/monthpicker";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { MonthRangePicker } from "@/components/ui/monthrangepicker";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Example() {
     const [date, setDate] = React.useState<Date>();
@@ -19,6 +20,7 @@ export default function Example() {
 
     return (
         <div className="flex flex-col gap-4">
+            <ModeToggle></ModeToggle>
             <div className="flex gap-4">
                 <Popover>
                     <PopoverTrigger asChild>

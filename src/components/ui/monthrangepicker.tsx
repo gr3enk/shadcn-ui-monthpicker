@@ -109,7 +109,7 @@ function MonthRangePicker({
     return (
         <div className={cn("min-w-[400px]  p-3", className)} {...props}>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0">
-                <div className="space-y-4 w-full">
+                <div className="w-full">
                     <MonthRangeCal
                         onMonthRangeSelect={onMonthRangeSelect}
                         onStartMonthSelect={onStartMonthSelect}
@@ -154,7 +154,7 @@ function MonthRangeCal({
 
     return (
         <div className="flex gap-4">
-            <div className="min-w-[400px]">
+            <div className="min-w-[400px] space-y-4">
                 <div className="flex justify-evenly pt-1 relative items-center">
                     <div className="text-sm font-medium">{callbacks?.yearLabel ? callbacks?.yearLabel(menuYear) : menuYear}</div>
                     <div className="space-x-1 flex items-center">
@@ -276,7 +276,7 @@ function MonthRangeCal({
             </div>
 
             {showQuickSelectors ? (
-                <div className=" flex flex-col gap-1">
+                <div className=" flex flex-col gap-1 justify-center">
                     {quickSelectors.map((s) => {
                         return (
                             <Button
