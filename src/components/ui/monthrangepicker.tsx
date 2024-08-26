@@ -1,7 +1,16 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { buttonVariants } from "./button";
+import { Button, buttonVariants } from "./button";
 import { cn } from "@/lib/utils";
+
+const addMonths = (input: Date, months: number) => {
+    const date = new Date(input);
+    date.setDate(1);
+    date.setMonth(date.getMonth() + months);
+    date.setDate(Math.min(input.getDate(), getDaysInMonth(date.getFullYear(), date.getMonth() + 1)));
+    return date;
+};
+const getDaysInMonth = (year: number, month: number) => new Date(year, month, 0).getDate();
 
 type Month = {
     number: number;
@@ -42,6 +51,21 @@ const MONTHS: Month[][] = [
     ],
 ];
 
+type QuickSelector = {
+    label: string;
+    startMonth: Date;
+    endMonth: Date;
+    variant?: ButtonVariant;
+    onClick?: (selector: QuickSelector) => void;
+};
+
+const QUICK_SELECTORS: QuickSelector[] = [
+    { label: "This year", startMonth: new Date(new Date().getFullYear(), 0), endMonth: new Date(new Date().getFullYear(), 11) },
+    { label: "Last year", startMonth: new Date(new Date().getFullYear() - 1, 0), endMonth: new Date(new Date().getFullYear() - 1, 11) },
+    { label: "Last 6 months", startMonth: new Date(addMonths(new Date(), -6)), endMonth: new Date() },
+    { label: "Last 12 months", startMonth: new Date(addMonths(new Date(), -12)), endMonth: new Date() },
+];
+
 type MonthRangeCalProps = {
     selectedMonthRange?: { start: Date; end: Date };
     onStartMonthSelect?: (date: Date) => void;
@@ -61,6 +85,8 @@ type MonthRangeCalProps = {
     };
     minDate?: Date;
     maxDate?: Date;
+    quickSelectors?: QuickSelector[];
+    showQuickSelectors?: boolean;
 };
 
 type ButtonVariant = "default" | "outline" | "ghost" | "link" | "destructive" | "secondary" | null | undefined;
@@ -75,11 +101,13 @@ function MonthRangePicker({
     variant,
     minDate,
     maxDate,
+    quickSelectors,
+    showQuickSelectors,
     className,
     ...props
 }: React.HTMLAttributes<HTMLDivElement> & MonthRangeCalProps) {
     return (
-        <div className={cn("min-w-[400px] w-[560px] p-3", className)} {...props}>
+        <div className={cn("min-w-[400px]  p-3", className)} {...props}>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0">
                 <div className="space-y-4 w-full">
                     <MonthRangeCal
@@ -92,6 +120,8 @@ function MonthRangePicker({
                         variant={variant}
                         minDate={minDate}
                         maxDate={maxDate}
+                        quickSelectors={quickSelectors}
+                        showQuickSelectors={showQuickSelectors}
                     ></MonthRangeCal>
                 </div>
             </div>
@@ -99,7 +129,19 @@ function MonthRangePicker({
     );
 }
 
-function MonthRangeCal({ selectedMonthRange, onMonthRangeSelect, onStartMonthSelect, callbacks, variant, minDate, maxDate, onYearBackward, onYearForward }: MonthRangeCalProps) {
+function MonthRangeCal({
+    selectedMonthRange,
+    onMonthRangeSelect,
+    onStartMonthSelect,
+    callbacks,
+    variant,
+    minDate,
+    maxDate,
+    quickSelectors = QUICK_SELECTORS,
+    showQuickSelectors = true,
+    onYearBackward,
+    onYearForward,
+}: MonthRangeCalProps) {
     const [startYear, setStartYear] = React.useState<number>(selectedMonthRange?.start.getFullYear() ?? new Date().getFullYear());
     const [startMonth, setStartMonth] = React.useState<number>(selectedMonthRange?.start?.getMonth() ?? new Date().getMonth());
     const [endYear, setEndYear] = React.useState<number>(selectedMonthRange?.end?.getFullYear() ?? new Date().getFullYear() + 1);
@@ -111,32 +153,32 @@ function MonthRangeCal({ selectedMonthRange, onMonthRangeSelect, onStartMonthSel
     if (minDate && maxDate && minDate > maxDate) minDate = maxDate;
 
     return (
-        <>
-            <div className="flex justify-evenly pt-1 relative items-center">
-                <div className="text-sm font-medium">{callbacks?.yearLabel ? callbacks?.yearLabel(menuYear) : menuYear}</div>
-                <div className="space-x-1 flex items-center">
-                    <button
-                        onClick={() => {
-                            setMenuYear(menuYear - 1);
-                            if (onYearBackward) onYearBackward();
-                        }}
-                        className={cn(buttonVariants({ variant: variant?.chevrons ?? "outline" }), "inline-flex items-center justify-center h-7 w-7 p-0 absolute left-1")}
-                    >
-                        <ChevronLeft className="opacity-50 h-4 w-4" />
-                    </button>
-                    <button
-                        onClick={() => {
-                            setMenuYear(menuYear + 1);
-                            if (onYearForward) onYearForward();
-                        }}
-                        className={cn(buttonVariants({ variant: variant?.chevrons ?? "outline" }), "inline-flex items-center justify-center h-7 w-7 p-0 absolute right-1")}
-                    >
-                        <ChevronRight className="opacity-50 h-4 w-4" />
-                    </button>
+        <div className="flex gap-4">
+            <div className="min-w-[400px]">
+                <div className="flex justify-evenly pt-1 relative items-center">
+                    <div className="text-sm font-medium">{callbacks?.yearLabel ? callbacks?.yearLabel(menuYear) : menuYear}</div>
+                    <div className="space-x-1 flex items-center">
+                        <button
+                            onClick={() => {
+                                setMenuYear(menuYear - 1);
+                                if (onYearBackward) onYearBackward();
+                            }}
+                            className={cn(buttonVariants({ variant: variant?.chevrons ?? "outline" }), "inline-flex items-center justify-center h-7 w-7 p-0 absolute left-1")}
+                        >
+                            <ChevronLeft className="opacity-50 h-4 w-4" />
+                        </button>
+                        <button
+                            onClick={() => {
+                                setMenuYear(menuYear + 1);
+                                if (onYearForward) onYearForward();
+                            }}
+                            className={cn(buttonVariants({ variant: variant?.chevrons ?? "outline" }), "inline-flex items-center justify-center h-7 w-7 p-0 absolute right-1")}
+                        >
+                            <ChevronRight className="opacity-50 h-4 w-4" />
+                        </button>
+                    </div>
+                    <div className="text-sm font-medium">{callbacks?.yearLabel ? callbacks?.yearLabel(menuYear + 1) : menuYear + 1}</div>
                 </div>
-                <div className="text-sm font-medium">{callbacks?.yearLabel ? callbacks?.yearLabel(menuYear + 1) : menuYear + 1}</div>
-            </div>
-            <div className="flex">
                 <table className="w-full border-collapse space-y-1">
                     <tbody>
                         {MONTHS.map((monthRow) => {
@@ -232,7 +274,32 @@ function MonthRangeCal({ selectedMonthRange, onMonthRangeSelect, onStartMonthSel
                     </tbody>
                 </table>
             </div>
-        </>
+
+            {showQuickSelectors ? (
+                <div className=" flex flex-col gap-1">
+                    {quickSelectors.map((s) => {
+                        return (
+                            <Button
+                                onClick={() => {
+                                    setStartYear(s.startMonth.getFullYear());
+                                    setStartMonth(s.startMonth.getMonth());
+                                    setEndYear(s.endMonth.getFullYear());
+                                    setEndMonth(s.endMonth.getMonth());
+                                    setRangePending(false);
+                                    setEndLocked(true);
+                                    if (onMonthRangeSelect) onMonthRangeSelect({ start: s.startMonth, end: s.endMonth });
+                                    if (s.onClick) s.onClick(s);
+                                }}
+                                key={s.label}
+                                variant={s.variant ?? "outline"}
+                            >
+                                {s.label}
+                            </Button>
+                        );
+                    })}
+                </div>
+            ) : null}
+        </div>
     );
 }
 

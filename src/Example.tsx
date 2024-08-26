@@ -2,10 +2,10 @@ import React from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./components/ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns/format";
-import { MonthPicker } from "./components/ui/monthpicker";
-import { cn } from "./lib/utils";
-import { Button } from "./components/ui/button";
-import { MonthRangePicker } from "./components/ui/monthrangepicker";
+import { MonthPicker } from "@/components/ui/monthpicker";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { MonthRangePicker } from "@/components/ui/monthrangepicker";
 
 export default function Example() {
     const [date, setDate] = React.useState<Date>();
@@ -43,7 +43,7 @@ export default function Example() {
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
-                        <MonthRangePicker onMonthRangeSelect={(newDates) => setDates(newDates)} selectedMonthRange={dates} variant={{ chevrons: "ghost" }}></MonthRangePicker>
+                        <MonthRangePicker onMonthRangeSelect={(newDates) => setDates(newDates)} selectedMonthRange={dates}></MonthRangePicker>
                     </PopoverContent>
                 </Popover>
                 <p className="mb-4 text-sm opacity-50">selected date: {`${dates?.start?.toDateString()} - ${dates?.end?.toDateString()}`}</p>
