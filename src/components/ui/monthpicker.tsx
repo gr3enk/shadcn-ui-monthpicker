@@ -124,12 +124,15 @@ function MonthCal({ selectedMonth, onMonthSelect, callbacks, variant, minDate, m
             </div>
             <table className="w-full border-collapse space-y-1">
                 <tbody>
-                    {MONTHS.map((monthRow) => {
+                    {MONTHS.map((monthRow, a) => {
                         return (
-                            <tr className="flex w-full mt-2">
+                            <tr key={"row-" + a} className="flex w-full mt-2">
                                 {monthRow.map((m) => {
                                     return (
-                                        <td className="h-10 w-1/4 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20">
+                                        <td
+                                            key={m.number}
+                                            className="h-10 w-1/4 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20"
+                                        >
                                             <button
                                                 onClick={() => {
                                                     setMonth(m.number);

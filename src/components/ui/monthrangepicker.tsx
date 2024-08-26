@@ -181,12 +181,13 @@ function MonthRangeCal({
                 </div>
                 <table className="w-full border-collapse space-y-1">
                     <tbody>
-                        {MONTHS.map((monthRow) => {
+                        {MONTHS.map((monthRow, a) => {
                             return (
-                                <tr className="flex w-full mt-2">
+                                <tr key={"row-" + a} className="flex w-full mt-2">
                                     {monthRow.map((m, i) => {
                                         return (
                                             <td
+                                                key={m.number + "-" + m.yearOffset}
                                                 className={cn(
                                                     cn(
                                                         cn(
