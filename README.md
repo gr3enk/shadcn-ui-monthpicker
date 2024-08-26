@@ -4,6 +4,9 @@ A `Monthpicker` and `Monthrangepicker` component built for [shadcn-ui](https://u
 
 ([Radix](https://www.radix-ui.com/), [Tailwind CSS](https://tailwindcss.com/)).
 
+![alt text](https://cdn.discordapp.com/attachments/417049193484517379/1277552126922461236/Monatsauswahl.webp?ex=66cd94a2&is=66cc4322&hm=a812c46b42539941cb0a490e0c68c53720f34a082ef152bb4a3e97b4fe9a7c7b&)
+
+
 ## Installation
 
 The components require the following shadcn-ui components.
@@ -75,8 +78,8 @@ export default function Example() {
 | `onYearForward`  | () => void           | -             | Called when calendar browsed forward  |
 | `onYearBackward` | () => void           | -             | Called when calendar browsed backward |
 
-#### callbacks
-
+<details>
+  <summary>callbacks</summary>
 | Prop         | Type                     | Description                       |
 | ------------ | ------------------------ | --------------------------------- |
 | `yearLabel`  | (year: number) => string | Used for styling the Year Label   |
@@ -85,8 +88,9 @@ export default function Example() {
 ```typescript
 type Month = { number: number; name: string };
 ```
-
-#### variant
+</details>
+<details>
+  <summary>variant</summary>
 
 | Prop       | Type                                             | Description                                                                             |
 | ---------- | ------------------------------------------------ | --------------------------------------------------------------------------------------- |
@@ -96,6 +100,7 @@ type Month = { number: number; name: string };
 ```typescript
 type ButtonVariant = "default" | "outline" | "ghost" | "link" | "destructive" | "secondary" | null | undefined;
 ```
+</details>
 
 ## `Monthrangepicker` Component
 
@@ -155,7 +160,8 @@ export default function Example() {
 | `quickSelectors`     | Object[]             | -             | See quickselectors table                                                               |
 | `showQuickSelectors` | boolean              | true          | Show/Hide the quickselectors                                                           |
 
-#### quickselectors
+<details>
+  <summary>quickselectors</summary>
 
 | Prop         | Type                              | Description                                  |
 | ------------ | --------------------------------- | -------------------------------------------- |
@@ -164,8 +170,10 @@ export default function Example() {
 | `endMonth`   | Date                              | Date for the range end month                 |
 | `variant`    | ButtonVariant                     | variant for the button                       |
 | `onClick`    | (selector: QuickSelector) => void | Called when quick selection has been clicked |
+</details>
 
-#### callbacks
+<details>
+  <summary>callbacks</summary>
 
 | Prop         | Type                     | Description                       |
 | ------------ | ------------------------ | --------------------------------- |
@@ -175,9 +183,10 @@ export default function Example() {
 ```typescript
 type Month = { number: number; name: string; yearOffset: number }; // yearOffset = 0 on the left calendar and 1 on the right side calendar
 ```
+</details>
 
 <details>
-  <summary>#### variant</summary>
+  <summary>variant</summary>
 
 | Prop       | Type                                             | Description                                                                             |
 | ---------- | ------------------------------------------------ | --------------------------------------------------------------------------------------- |
