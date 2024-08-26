@@ -1,8 +1,11 @@
 # Monthpicker & Monthrangepicker for shadcn-ui
 
-A `Monthpicker` and `Monthrangepicker` component built for [shadcn-ui](https://ui.shadcn.com/).
-
+A fully customizable `Monthpicker` and `Monthrangepicker` component built for [shadcn-ui](https://ui.shadcn.com/).
 ([Radix](https://www.radix-ui.com/), [Tailwind CSS](https://tailwindcss.com/)).
+
+![header image](https://cdn.discordapp.com/attachments/417049193484517379/1277552126922461236/Monatsauswahl.webp?ex=66cd94a2&is=66cc4322&hm=a812c46b42539941cb0a490e0c68c53720f34a082ef152bb4a3e97b4fe9a7c7b&)
+
+[Try out the demo!](https://greenk-demos.vercel.app/monthpickers)
 
 ## Installation
 
@@ -35,7 +38,7 @@ import { MonthPicker } from "@/components/ui/monthpicker";
 export default function Example() {
     const [date, setDate] = React.useState<Date>();
 
-    return <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedDate={date}></MonthPicker>;
+    return <MonthPicker onMonthSelect={setDate} selectedDate={date} />;
 }
 ```
 
@@ -54,7 +57,7 @@ export default function Example() {
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-                <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedMonth={date}></MonthPicker>
+                <MonthPicker onMonthSelect={setDate} selectedMonth={date} />
             </PopoverContent>
         </Popover>
     );
@@ -75,8 +78,8 @@ export default function Example() {
 | `onYearForward`  | () => void           | -             | Called when calendar browsed forward  |
 | `onYearBackward` | () => void           | -             | Called when calendar browsed backward |
 
-#### callbacks
-
+<details>
+  <summary>callbacks</summary>
 | Prop         | Type                     | Description                       |
 | ------------ | ------------------------ | --------------------------------- |
 | `yearLabel`  | (year: number) => string | Used for styling the Year Label   |
@@ -85,8 +88,9 @@ export default function Example() {
 ```typescript
 type Month = { number: number; name: string };
 ```
-
-#### variant
+</details>
+<details>
+  <summary>variant</summary>
 
 | Prop       | Type                                             | Description                                                                             |
 | ---------- | ------------------------------------------------ | --------------------------------------------------------------------------------------- |
@@ -96,6 +100,7 @@ type Month = { number: number; name: string };
 ```typescript
 type ButtonVariant = "default" | "outline" | "ghost" | "link" | "destructive" | "secondary" | null | undefined;
 ```
+</details>
 
 ## `Monthrangepicker` Component
 
@@ -113,7 +118,7 @@ import { MonthRangePicker } from "@/components/ui/monthrangepicker";
 export default function Example() {
     const [dates, setDates] = React.useState<{ start: Date; end: Date }>();
 
-    return <MonthRangePicker onMonthRangeSelect={(newDates) => setDates(newDates)} selectedMonthRange={dates}></MonthRangePicker>;
+    return <MonthRangePicker onMonthRangeSelect={setDates} selectedMonthRange={dates} />;
 }
 ```
 
@@ -121,7 +126,7 @@ Use with shadcn-ui `Popover` component:
 
 ```typescript
 export default function Example() {
-    const [date, setDate] = React.useState<Date>();
+    const [dates, setDates] = React.useState<{ start: Date; end: Date }>();
 
     return (
         <Popover>
@@ -132,7 +137,7 @@ export default function Example() {
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
-                <MonthRangePicker onMonthRangeSelect={(newDates) => setDates(newDates)} selectedMonthRange={dates}></MonthRangePicker>
+                <MonthRangePicker onMonthRangeSelect={setDates} selectedMonthRange={dates} />
             </PopoverContent>
         </Popover>
     );
@@ -155,7 +160,8 @@ export default function Example() {
 | `quickSelectors`     | Object[]             | -             | See quickselectors table                                                               |
 | `showQuickSelectors` | boolean              | true          | Show/Hide the quickselectors                                                           |
 
-#### quickselectors
+<details>
+  <summary>quickselectors</summary>
 
 | Prop         | Type                              | Description                                  |
 | ------------ | --------------------------------- | -------------------------------------------- |
@@ -164,8 +170,10 @@ export default function Example() {
 | `endMonth`   | Date                              | Date for the range end month                 |
 | `variant`    | ButtonVariant                     | variant for the button                       |
 | `onClick`    | (selector: QuickSelector) => void | Called when quick selection has been clicked |
+</details>
 
-#### callbacks
+<details>
+  <summary>callbacks</summary>
 
 | Prop         | Type                     | Description                       |
 | ------------ | ------------------------ | --------------------------------- |
@@ -175,9 +183,10 @@ export default function Example() {
 ```typescript
 type Month = { number: number; name: string; yearOffset: number }; // yearOffset = 0 on the left calendar and 1 on the right side calendar
 ```
+</details>
 
 <details>
-  <summary>#### variant</summary>
+  <summary>variant</summary>
 
 | Prop       | Type                                             | Description                                                                             |
 | ---------- | ------------------------------------------------ | --------------------------------------------------------------------------------------- |
