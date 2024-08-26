@@ -1,50 +1,90 @@
-# React + TypeScript + Vite
+# Monthpicker & Monthrangepicker for shadcn-ui
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A `Monthpicker` and `Monthrangepicker` component built for [shadcn-ui](https://ui.shadcn.com/).
 
-Currently, two official plugins are available:
+([Radix](https://www.radix-ui.com/), [Tailwind CSS](https://tailwindcss.com/)).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+The components require the following shadcn-ui components.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+-   [Button](https://ui.shadcn.com/docs/components/button)
+-   [Popover](https://ui.shadcn.com/docs/components/popover) (optional)
 
-- Configure the top-level `parserOptions` property like this:
+CLI Installation:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+npx shadcn-ui@latest add button popover
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Also [Lucide React](https://lucide.dev/guide/packages/lucide-react) is requiered for the Icons.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## `Monthrange` Component
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Example
+
+```typescript
+export default function Example() {
+    const [date, setDate] = useState<Date>();
+
+    return <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedDate={date}></MonthPicker>;
+}
+```
+
+Use with shadcn-ui `Popover` component:
+
+```typescript
+export default function Example() {
+    const [date, setDate] = React.useState<Date>();
+
+    return (
+        <Popover>
+            <PopoverTrigger asChild>
+                <Button variant={"outline"} className={cn("w-[280px] justify-start text-left font-normal", !date && "text-muted-foreground")}>
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, "MMM yyyy") : <span>Pick a month</span>}
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+                <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedMonth={date}></MonthPicker>
+            </PopoverContent>
+        </Popover>
+    );
+}
+```
+
+### Props
+
+| Prop             | Type                 | Default       | Description                           |
+| ---------------- | -------------------- | ------------- | ------------------------------------- |
+| `onMonthSelect`  | (date: Date) => void | -             | Called when a month has been selected |
+| `selectedMonth`  | Date                 | Today’s Month | Month state for initialization        |
+| `minDate`        | Date                 | no limit      | The minimum selectable date           |
+| `maxDate`        | Date                 | no limit      | The maximum selectable date           |
+| `disabledDates`  | Date[]               | -             | Separate non-selectable months        |
+| `callbacks`      | object               | -             | See callbacks table                   |
+| `variant`        | object               | -             | See variant table                     |
+| `onYearForward`  | () => void           | -             | Called when calendar browsed forward  |
+| `onYearBackward` | () => void           | -             | Called when calendar browsed backward |
+
+#### callbacks
+
+| Prop         | Type                     | Description                       |
+| ------------ | ------------------------ | --------------------------------- |
+| `yearLabel`  | (year: number) => string | Used for styling the Year Label   |
+| `monthLabel` | (month: Month)           | Used for styling the Month Labels |
+
+```typescript
+type Month = { number: number; name: string };
+```
+
+#### variant
+
+| Prop       | Type                                             | Description                                                                             |
+| ---------- | ------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `calendar` | {`main: ButtonVariant, selected: ButtonVariant`} | Styling for the Month-buttons. `main` for non-selected & `selected` for selected Button |
+| `chevrons` | ButtonVariant                                    | Styling for the backward- & forward-chevron buttons                                     |
+
+```typescript
+type ButtonVariant = "default" | "outline" | "ghost" | "link" | "destructive" | "secondary" | null | undefined;
 ```

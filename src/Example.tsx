@@ -28,7 +28,7 @@ export default function Example() {
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
-                        <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedDate={date} variant={{ chevrons: "ghost" }}></MonthPicker>
+                        <MonthPicker onMonthSelect={(newDate) => setDate(newDate)} selectedMonth={date} variant={{ chevrons: "ghost" }}></MonthPicker>
                     </PopoverContent>
                 </Popover>
                 <p className="mb-4 text-sm opacity-50">selected date: {date?.toDateString()}</p>

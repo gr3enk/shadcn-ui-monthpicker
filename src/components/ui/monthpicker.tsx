@@ -30,7 +30,7 @@ const MONTHS: Month[][] = [
 ];
 
 type MonthCalProps = {
-    selectedDate?: Date;
+    selectedMonth?: Date;
     onMonthSelect?: (date: Date) => void;
     onYearForward?: () => void;
     onYearBackward?: () => void;
@@ -54,14 +54,14 @@ type ButtonVariant = "default" | "outline" | "ghost" | "link" | "destructive" | 
 
 function MonthPicker({
     onMonthSelect,
-    callbacks,
-    selectedDate,
-    onYearBackward,
-    onYearForward,
-    variant,
+    selectedMonth,
     minDate,
     maxDate,
     disabledDates,
+    callbacks,
+    onYearBackward,
+    onYearForward,
+    variant,
     className,
     ...props
 }: React.HTMLAttributes<HTMLDivElement> & MonthCalProps) {
@@ -72,7 +72,7 @@ function MonthPicker({
                     <MonthCal
                         onMonthSelect={onMonthSelect}
                         callbacks={callbacks}
-                        selectedDate={selectedDate}
+                        selectedMonth={selectedMonth}
                         onYearBackward={onYearBackward}
                         onYearForward={onYearForward}
                         variant={variant}
@@ -86,9 +86,9 @@ function MonthPicker({
     );
 }
 
-function MonthCal({ selectedDate, onMonthSelect, callbacks, variant, minDate, maxDate, disabledDates, onYearBackward, onYearForward }: MonthCalProps) {
-    const [year, setYear] = React.useState<number>(selectedDate?.getFullYear() ?? new Date().getFullYear());
-    const [month, setMonth] = React.useState<number>(selectedDate?.getMonth() ?? new Date().getMonth());
+function MonthCal({ selectedMonth, onMonthSelect, callbacks, variant, minDate, maxDate, disabledDates, onYearBackward, onYearForward }: MonthCalProps) {
+    const [year, setYear] = React.useState<number>(selectedMonth?.getFullYear() ?? new Date().getFullYear());
+    const [month, setMonth] = React.useState<number>(selectedMonth?.getMonth() ?? new Date().getMonth());
     const [menuYear, setMenuYear] = React.useState<number>(year);
 
     if (minDate && maxDate && minDate > maxDate) minDate = maxDate;
