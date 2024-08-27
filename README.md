@@ -207,3 +207,20 @@ type ButtonVariant = "default" | "outline" | "ghost" | "link" | "destructive" | 
 ```
 
 </details>
+
+## Example with shadcn `form` component
+
+You can use Monthpicker and Monthrangepicker with [shadcn forms](https://ui.shadcn.com/docs/components/form).
+A Form schema could look like this:
+
+```typescript
+const FormSchema = z.object({
+    month: z.date(),
+    monthrange: z.object({
+        start: z.date(),
+        end: z.date(),
+    }),
+});
+```
+
+You can check out a full form example [here](https://github.com/gr3enk/shadcn-ui-monthpicker/blob/main/src/FormExample.tsx)

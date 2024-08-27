@@ -10,7 +10,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Example() {
     const [date, setDate] = React.useState<Date>();
-    const [dates, setDates] = React.useState<{ start: Date; end: Date }>();
+    const [dates, setDates] = React.useState<{ start: Date; end: Date }>({ start: new Date(), end: new Date() });
 
     const max = new Date();
     max.setFullYear(2027);
