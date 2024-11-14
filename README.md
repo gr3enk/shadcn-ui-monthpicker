@@ -3,7 +3,7 @@
 A fully customizable `Monthpicker` and `Monthrangepicker` component built for [shadcn-ui](https://ui.shadcn.com/).
 ([Radix](https://www.radix-ui.com/), [Tailwind CSS](https://tailwindcss.com/)).
 
-![header image](https://cdn.discordapp.com/attachments/417049193484517379/1277552126922461236/Monatsauswahl.webp?ex=66cd94a2&is=66cc4322&hm=a812c46b42539941cb0a490e0c68c53720f34a082ef152bb4a3e97b4fe9a7c7b&)
+![header image](https://preview.redd.it/fully-customizable-month-picker-month-range-picker-v0-mxkkb99531ld1.jpg?width=2560&format=pjpg&auto=webp&s=7265043badad889440bf4daadabd560565af4de8)
 
 [Try out the demo!](https://greenk-demos.vercel.app/monthpickers)
 
