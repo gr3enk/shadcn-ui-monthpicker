@@ -5,7 +5,7 @@ A fully customizable `Monthpicker` and `Monthrangepicker` component built for [s
 
 ![header image](https://preview.redd.it/fully-customizable-month-picker-month-range-picker-v0-mxkkb99531ld1.jpg?width=2560&format=pjpg&auto=webp&s=7265043badad889440bf4daadabd560565af4de8)
 
-[Try out the demo!](https://greenk-demos.vercel.app/monthpickers)
+[Try out the demo!](https://greenk.dev/demos/monthpicker)
 
 ## Installation
 
@@ -14,11 +14,27 @@ The components require the following shadcn-ui components.
 -   [Button](https://ui.shadcn.com/docs/components/button)
 -   [Popover](https://ui.shadcn.com/docs/components/popover) (optional)
 
-CLI Installation:
+### CLI Installation:
 
 ```
 npx shadcn-ui@latest add button popover
 ```
+
+Monthpicker:
+
+```
+npx shadcn@latest add "https://greenk.dev/api/cli/shadcn/monthpicker"
+```
+
+Monthrangepicker:
+
+```
+npx shadcn@latest add "https://greenk.dev/api/cli/shadcn/monthrangepicker"
+```
+
+### Manual Installation:
+
+Copy the components to the `components` folder of your project.
 
 Link to components:
 
