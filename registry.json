@@ -1,0 +1,41 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "greenkdev",
+    "homepage": "https://greenk.dev",
+    "items": [
+        {
+            "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+            "name": "monthpicker",
+            "type": "registry:ui",
+            "title": "Month Picker",
+            "description": "A month picker component.",
+            "author": "@greenkdev",
+            "files": [
+                {
+                    "path": "src/components/ui/monthpicker.tsx",
+                    "type": "registry:ui"
+                }
+            ],
+            "registryDependencies": ["button"],
+
+            "dependencies": ["lucide-react"]
+        },
+        {
+            "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+            "name": "monthrangepicker",
+            "type": "registry:ui",
+            "title": "Month Range Picker",
+            "description": "A month range picker component.",
+            "author": "@greenkdev",
+            "files": [
+                {
+                    "path": "src/components/ui/monthrangepicker.tsx",
+                    "type": "registry:ui"
+                }
+            ],
+            "registryDependencies": ["button"],
+
+            "dependencies": ["lucide-react"]
+        }
+    ]
+}

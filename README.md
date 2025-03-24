@@ -9,30 +9,32 @@ A fully customizable `Monthpicker` and `Monthrangepicker` component built for [s
 
 ## Installation
 
-The components require the following shadcn-ui components.
-
--   [Button](https://ui.shadcn.com/docs/components/button)
--   [Popover](https://ui.shadcn.com/docs/components/popover) (optional)
-
 ### CLI Installation:
-
-```
-npx shadcn-ui@latest add button popover
-```
 
 Monthpicker:
 
 ```
-npx shadcn@latest add "https://greenk.dev/api/cli/shadcn/monthpicker"
+npx shadcn@latest add "https://greenk.dev/r/monthpicker.json"
 ```
 
 Monthrangepicker:
 
 ```
-npx shadcn@latest add "https://greenk.dev/api/cli/shadcn/monthrangepicker"
+npx shadcn@latest add "https://greenk.dev/r/monthrangepicker.json"
+```
+
+Optionally you can wrap the picker in a [Popover](https://ui.shadcn.com/docs/components/popover):
+
+```
+npx shadcn@latest add popover
 ```
 
 ### Manual Installation:
+
+The components require the following shadcn-ui components.
+
+-   [Button](https://ui.shadcn.com/docs/components/button)
+-   [Popover](https://ui.shadcn.com/docs/components/popover) (optional)
 
 Copy the components to the `components` folder of your project.
 
@@ -101,6 +103,7 @@ export default function Example() {
 
 <details>
   <summary>callbacks</summary>
+
 | Prop         | Type                     | Description                       |
 | ------------ | ------------------------ | --------------------------------- |
 | `yearLabel`  | (year: number) => string | Used for styling the Year Label   |
