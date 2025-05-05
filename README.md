@@ -59,9 +59,9 @@ import { cn } from "@/lib/utils";
 import { MonthPicker } from "@/components/ui/monthpicker";
 
 export default function Example() {
-    const [date, setDate] = React.useState<Date>();
+    const [month, setMonth] = React.useState<Date>();
 
-    return <MonthPicker onMonthSelect={setDate} selectedMonth={date} />;
+    return <MonthPicker onMonthSelect={setMonth} selectedMonth={month} />;
 }
 ```
 
